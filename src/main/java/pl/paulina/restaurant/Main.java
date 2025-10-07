@@ -22,9 +22,13 @@ public class Main {
         System.out.println(Paulina);
 
         Order orderOne = Paulina.placeOrder(LocalDate.of(2025,9,30));
+        System.out.println(orderOne.printOrderDetails());
         orderOne.addOrderItem(carbonaraPasta);
         orderOne.addOrderItem(italianPizza);
 
         orderOne.printOrderedItems(Paulina.getCustomerId());
+        orderOne.setStatus(Status.READY);
+        System.out.println(orderOne.getStatus());
+        System.out.println(orderOne.printOrderDetails());
     }
 }

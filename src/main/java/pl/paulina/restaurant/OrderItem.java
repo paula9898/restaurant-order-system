@@ -11,6 +11,6 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return "Dish{ "  +  dish.getName();
+        return "Dish{ "  +  dish.getName() + "}";
     }
 }
