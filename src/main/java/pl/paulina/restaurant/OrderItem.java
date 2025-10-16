@@ -1,10 +1,13 @@
 package pl.paulina.restaurant;
 
-public class OrderItem {
+import java.io.Serializable;
+
+public class OrderItem implements Serializable {
     private int quantity;
     private Dish dish;
+    private Order order;
 
-    public OrderItem(Dish dish) {
+    public OrderItem(Order order, Dish dish) {
         this.quantity = quantity;
         this.dish = dish;
     }

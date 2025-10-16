@@ -1,6 +1,6 @@
 package pl.paulina.restaurant;
 
-public enum Status {
+public enum OrderStatus {
     PREPARING,
     READY,
     CANCELLED
