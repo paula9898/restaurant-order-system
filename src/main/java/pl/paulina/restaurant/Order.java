@@ -1,36 +1,30 @@
 package pl.paulina.restaurant;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class Order {
-    //private final int orderNumber;
+
+public class Order implements Serializable {
     private LocalDate orderDate;
     private List<OrderItem> orderItems = new ArrayList<>();
-    private final String customerId;
-    private Status status = Status.PREPARING;
-    private String orderId;
+    private OrderStatus status = OrderStatus.PREPARING;
+    private Client client;
 
-    public Order(String customerId,LocalDate orderDate, Status status) {
+    public Order(Client client, LocalDate orderDate, OrderStatus status) {
+        this.client = client;
         this.orderDate = orderDate;
-        this.customerId = customerId;
         this.status = status;
-        this.orderId =  String.valueOf(UUID.randomUUID());
     }
 
-    public OrderItem addOrderItem(Dish dish) {
-        OrderItem item = new OrderItem(dish);
+    public void addOrderItem(Dish dish) {
+        OrderItem item = new OrderItem(this, dish);
         orderItems.add(item);
-
-        return item;
     }
 
-    public void printOrderedItems(String customerId) {
-         for(int i = 0; i < orderItems.size(); i++) {
-             System.out.println(orderItems.get(i));
-         }
+    public List<OrderItem> getOrderedItems() {
+         return orderItems;
     }
 
     public String printOrderDetails() {
@@ -40,7 +34,7 @@ public class Order {
         return stringBuilder.toString();
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
 
     }
@@ -49,12 +43,8 @@ public class Order {
         return orderDate;
     }
 
-    public Status getStatus() {
+    public OrderStatus getStatus() {
         return status;
-    }
-
-    public String getOrderId() {
-        return orderId;
     }
 }
 

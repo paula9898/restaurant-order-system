@@ -3,32 +3,42 @@ package pl.paulina.restaurant;
 import java.time.LocalDate;
 
 public class Main {
-
     public static void main(String[] args) {
 
-        Dish italianPizza = new Dish("Italian Pizza", 12.23);
-        Dish neapolitanPizza = new Dish("Neapolitan Pizza", 13.30);
-        Dish carbonaraPasta = new Dish("Carbonara",16.00);
+        Menu  menuTopollino  = new Menu("Toppolino");
 
-        Menu topoliniRestaurant = new Menu();
+        Dish rucolaPizza = new Dish(menuTopollino, "Rucola Pizza", 12.50);
+        Dish mergherita = new Dish(menuTopollino, "Margherita", 9.50);
+        Dish rustica = new Dish(menuTopollino, "Rustica ", 15.50);
+        Dish salami = new Dish(menuTopollino, "Salami", 12.50);
 
-        topoliniRestaurant.addNewDish(italianPizza);
-        topoliniRestaurant.addNewDish(neapolitanPizza);
-        topoliniRestaurant.addNewDish(carbonaraPasta);
+        Ingredient mozarrella = new Ingredient("Mozarella");
+        Ingredient rucola = new Ingredient("Rucola");
+        Ingredient hardCheese = new Ingredient("Hard cheese");
+        Ingredient garlic = new Ingredient("Garlic");
 
-        topoliniRestaurant.showMenu();
+        rucolaPizza.addIngredient(mozarrella);
+        rucolaPizza.addIngredient(rucola);
+        rucolaPizza.addIngredient(hardCheese);
+        rucolaPizza.addIngredient(garlic);
 
-        Client Paulina = new Client( "Paulina");
-        System.out.println(Paulina);
+        menuTopollino.addNewDish(rucolaPizza);
+        menuTopollino.addNewDish(mergherita);
+        menuTopollino.addNewDish(rustica);
+        menuTopollino.addNewDish(salami);
 
-        Order orderOne = Paulina.placeOrder(LocalDate.of(2025,9,30));
-        System.out.println(orderOne.printOrderDetails());
-        orderOne.addOrderItem(carbonaraPasta);
-        orderOne.addOrderItem(italianPizza);
+        System.out.println(rucolaPizza.getIngredients());
 
-        orderOne.printOrderedItems(Paulina.getCustomerId());
-        orderOne.setStatus(Status.READY);
-        System.out.println(orderOne.getStatus());
-        System.out.println(orderOne.printOrderDetails());
+        Client client1 = new Client("Otrebska");
+
+        Order orderClient1 = client1.placeOrder(LocalDate.now());
+        orderClient1.addOrderItem(rucolaPizza);
+
+        System.out.println(orderClient1.getStatus());
+        orderClient1.setStatus(OrderStatus.CANCELLED);
+        System.out.println(orderClient1.getStatus());
+
+        System.out.println(orderClient1.getOrderedItems());
+
     }
 }

@@ -1,13 +1,19 @@
 package pl.paulina.restaurant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu {
-    private Dish dish;
+public class Menu implements Serializable {
     private List<Dish> dishes = new ArrayList<>();
+    private String name;
 
-    public Menu() {
+    public Menu(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addNewDish(Dish dish) {
