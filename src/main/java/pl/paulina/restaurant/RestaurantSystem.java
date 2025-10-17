@@ -27,12 +27,6 @@ public class RestaurantSystem implements Serializable {
         return this.menu.getName();
     }
 
-    public void readClientsList() {
-        for(int i = 0; i < clientsList.size(); i++) {
-            System.out.println(clientsList.get(i));
-        }
-    }
-
     public void writeToFile(ObjectOutputStream out) throws IOException, ClassNotFoundException {
 
         out.writeObject(this);

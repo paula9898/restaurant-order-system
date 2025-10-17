@@ -30,8 +30,7 @@ public class Ingredient implements Serializable {
     @Override
     public String toString() {
         return "Ingredient{" +
-                "name='" + name + '\'' +
-                ", quantity=" + quantity +
+                "name='" + name +
                 '}';
     }
 }
